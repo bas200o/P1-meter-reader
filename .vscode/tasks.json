@@ -5,10 +5,13 @@
             "label": "C/C++: g++ build active file",
             "command": "/usr/bin/g++",
             "args": [
+                "-lmosquitto",
                 "-g",
                 "${file}",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"
+                
+
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
