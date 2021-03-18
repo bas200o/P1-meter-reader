@@ -18,6 +18,7 @@
 #define MQTT_PASSWORD "hamenkaastostie"
 #define MQTT_IP "192.168.178.12"
 #define MQTT_PORT 1883
+#define MQTT_TOPIC "meter/energy"
 
 #define SERIAL_PORT "/dev/ttyUSB0"
 
@@ -102,7 +103,6 @@ int _INIT_STATE(fstream &f, struct mosquitto *mosq)
     else
     {
         cout << "We are now connected to the broker!" << endl;
-        mosquitto_publish(mosq, NULL, "test/t1", 5, "testr", 0, false);
     }
 
     // INIT serial port
@@ -180,7 +180,7 @@ void _SEND_STATE(mosquitto *mosq, datagram &reading)
     string json_string = JS::serializeStruct(reading);
     cout << json_string << endl;
 
-    mosquitto_publish(mosq, NULL, "test/t1", json_string.length(), json_string.c_str(), 0, false);
+    mosquitto_publish(mosq, NULL, MQTT_TOPIC, json_string.length(), json_string.c_str(), 0, false);
 
     reading = {};
 }
@@ -210,7 +210,6 @@ int main()
         if (eof == 1)
         {
             _SEND_STATE(mosq, reading);
-
         }
     }
 }
