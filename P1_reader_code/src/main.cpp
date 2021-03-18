@@ -12,7 +12,7 @@
 #include <fstream>
 #include <iostream>
 #include <mosquitto.h>
-#include "json_struct/include/json_struct.h"
+#include "json_structs/include/json_struct.h"
 
 #define MQTT_USERNAME "meter"
 #define MQTT_PASSWORD "hamenkaastostie"
