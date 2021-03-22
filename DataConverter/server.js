@@ -11,7 +11,8 @@ function handleMqttEnergyMessage(message) {
     newSqlData[newSqlData.length] = parseMeterEnergy(message);
 
     if (newSqlData.length >=60) {
-        sqlEnergy.sendDataToDatabase(newSqlData);
+    
+        sqlEnergy.sendDataToDatabase([newSqlData[0]]);
         newSqlData = [];
      }
 
