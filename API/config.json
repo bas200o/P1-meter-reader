@@ -1,0 +1,12 @@
+{
+    "http": {
+        "port": 8080
+    },
+    "mySqlConfig": {
+        "host" : "plex.shitposts.nl",
+        "user" : "meterboi",
+        "password" : "hamenkaas",
+        "database" : "meterbase",
+        "multipleStatements": true
+    }
+}
