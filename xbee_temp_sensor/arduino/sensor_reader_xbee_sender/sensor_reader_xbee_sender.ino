@@ -1,5 +1,3 @@
-
-// lib download https://www.circuitbasics.com/wp-content/uploads/2015/10/DHTLib.zip
 #include "dht.h"
 
 dht DHT;

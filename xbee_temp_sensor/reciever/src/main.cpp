@@ -75,7 +75,7 @@ int main()
     mosquitto *mosq;
 
     mosquitto_lib_init();
-    mosq = mosquitto_new("meterm6", true, NULL);
+    mosq = mosquitto_new("xbeemeterm6", true, NULL);
 
     int rc;
     rc = _INIT_STATE(f, mosq);
