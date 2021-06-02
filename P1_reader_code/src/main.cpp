@@ -92,7 +92,7 @@ int _INIT_STATE(fstream &f, struct mosquitto *mosq)
 {
     // INIT MQTT BROKER
     int rc;
-    mosquitto_username_pw_set(mosq, MQTT_USERNAME, MQTT_USERNAME);
+    mosquitto_username_pw_set(mosq, MQTT_USERNAME, MQTT_PASSWORD);
 
     rc = mosquitto_connect(mosq, MQTT_IP, MQTT_PORT, 60);
     if (rc != 0)
