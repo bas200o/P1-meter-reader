@@ -16,7 +16,7 @@
 
 #define MQTT_USERNAME "meter"
 #define MQTT_PASSWORD "hamenkaastostie"
-#define MQTT_IP "192.168.178.12"
+#define MQTT_IP "plex.shitposts.nl"
 #define MQTT_PORT 1883
 #define MQTT_TOPIC "meter/energy"
 
