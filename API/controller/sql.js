@@ -1,8 +1,13 @@
 const mysql = require("mysql");
-const config = require('./config.json');
 
 async function runQuery(query) {
-    var mysqlConnection = mysql.createConnection(config.mySqlConfig);
+    var mysqlConnection = mysql.createConnection({
+        host : "plex.shitposts.nl",
+        user : "meterboi",
+        password : "hamenkaas",
+        database : "meterbase",
+        multipleStatements: true
+    });
 
     var queryPrommise = new Promise((resolve, reject) => {
         mysqlConnection.connect((err)=>{ 

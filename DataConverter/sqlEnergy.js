@@ -1,6 +1,6 @@
 const mysql = require("mysql");
 
-function sendDataToDatabase(newSqlData) {
+function sendEnergyDataToDatabase(newSqlData) {
     var mysqlConnection = mysql.createConnection({
         host : "plex.shitposts.nl",
         user : "meterboi",
@@ -30,6 +30,38 @@ function sendDataToDatabase(newSqlData) {
     });
 }
 
+function sendTempDataToDatabase(newSqlData) {
+    var mysqlConnection = mysql.createConnection({
+        host : "plex.shitposts.nl",
+        user : "meterboi",
+        password : "hamenkaas",
+        database : "meterbase",
+        multipleStatements: true
+    });
+    
+    mysqlConnection.connect((err)=>{ 
+        if (!err) {
+            
+        var sql = "INSERT INTO temp (temperature, humidity) VALUES ('24', '48') ?";
+    
+        mysqlConnection.query(sql, [newSqlData], function (err, result) {
+        if (err) {
+            console.log(err.message);
+            console.log("Query error");
+        };
+            // console.log(`Data has succesful been send`);
+            mysqlConnection.destroy();
+        });
+    
+        } else {
+            console.log(err.message);
+            console.log("Connection error");
+        }
+    });
+}
 
 
-exports.sendDataToDatabase = sendDataToDatabase;
+
+
+exports.sendEnertgyDataToDatabase = sendEnergyDataToDatabase;
+exports.sendTempDataToDatabase =    sendTempDataToDatabase;

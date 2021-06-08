@@ -4,6 +4,8 @@ fetch('http://localhost:8080/api/v1/getLatestH2')
 
     var voltaeChart = document.getElementById('voltageChart').getContext('2d');
     var usageChart = document.getElementById('usageChart').getContext('2d');
+    var bespaart = document.getElementById('bespaart');
+
 
     var time = [];
     var voltage = [];
@@ -21,7 +23,23 @@ fetch('http://localhost:8080/api/v1/getLatestH2')
         
 
     }
-    
+
+    var totalUsage = 0;
+
+    delivery.forEach(del => {
+        totalUsage -= del;
+    });
+
+    usage.forEach(us => {
+        totalUsage += us
+    });
+
+    totalUsage = totalUsage/time.length; //gets average
+
+    var amountSpentOnPower = Math.round(100 *totalUsage / 5.0)/100; //in cents over 2 hours
+
+
+    bespaart.innerText = `Over de afgelopen 2 uur uigegeven aan stroom: €${amountSpentOnPower}`
 
     
     new Chart(voltaeChart, {
@@ -74,7 +92,7 @@ fetch('http://localhost:8080/api/v1/getLatestH2')
                     ticks: {
                         beginAtZero: false,
                         callback: function(value, index, values) {
-                            return 'W' + value;
+                            return 'KW ' + value;
                         }
                     }
                 }],
@@ -87,7 +105,9 @@ fetch('http://localhost:8080/api/v1/getLatestH2')
 });
 
 
-
-
-        
-        
+fetch('http://localhost:8080/api/v1/getTemp')
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('temp').innerText = `Temperatuur: ${data[0].temperature}°C` ;
+        document.getElementById('hum').innerText = `Lucht vochtigheid: ${data[0].humidity}%`;
+});

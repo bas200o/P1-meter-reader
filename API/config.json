@@ -2,11 +2,12 @@
     "http": {
         "port": 8080
     },
-    "mySqlConfig": {
-        "host" : "plex.shitposts.nl",
-        "user" : "meterboi",
-        "password" : "hamenkaas",
-        "database" : "meterbase",
-        "multipleStatements": true
+    "mongodb": {
+        "host": "mongodb://localhost:27017/iwsn"
+    },
+    "mqtt": {
+        "broker": "mqtt://test.mosquitto.org",
+        "topic_log": "iwsn-wemos",
+        "topic_event": "iwsn-wemos-event" 
     }
 }

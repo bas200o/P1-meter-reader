@@ -35,6 +35,11 @@ async function getYear(req, res, next) {
     res.status(200).json(sqlData);
 }
 
+async function getTemp(req, res, next) {
+    var sqlData = await sql.runQuery("SELECT * FROM meterbase.temp ORDER BY created_at DESC LIMIT 1;");
+    res.status(200).json(sqlData);
+}
+
 var Module = module.exports;
 Module.getNulls = getNulls;
 Module.getLatest2h = getLatest2h;
@@ -43,3 +48,5 @@ Module.getDay = getDay;
 Module.getWeek = getWeek;
 Module.getMonth = getMonth;
 Module.getYear = getYear;
+
+Module.getTemp = getTemp;

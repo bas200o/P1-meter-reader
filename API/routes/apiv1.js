@@ -14,5 +14,6 @@ router.get('/getDay', sqlGet.getDay);
 router.get('/getWeek', sqlGet.getWeek);
 router.get('/getMonth', sqlGet.getMonth);
 router.get('/getYear', sqlGet.getYear);
+router.get('/getTemp', sqlGet.getTemp);
 
 module.exports = router;
