@@ -1,13 +1,18 @@
+const { MqttClient } = require('mqtt');
 var mqtt = require('mqtt');
 var client;
-
 
 var connected = false;
 const callbacks = new Map();
 
 function initConnection() {
-    client = mqtt.connect('mqtt://plex.shitposts.nl:1883');
+    client = mqtt.connect("mqtt://plex.shitposts.nl:1883", {
+        protocol: 'mqtt',
+        username: 'meter',
+        password: 'hamenkaastostie'
+    });
 
+    console.log("Entered init connection");
     client.on('connect', function () {
         connected = true;
         console.log("Connected to mqtt");
@@ -17,7 +22,6 @@ function initConnection() {
     });  
     
     client.on('message', function (topic, message) {
-      
         if (callbacks.has(topic)) {
             callbacks.get(topic)(message);
         } 

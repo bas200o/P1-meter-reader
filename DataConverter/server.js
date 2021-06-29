@@ -1,5 +1,5 @@
-var mqttEnergy = require("./mqttEnergy");
-const sqlEnergy = require("./sqlEnergy");
+const mqttEnergy = require("./mqttEnergy");
+const sql = require("./sql");
 
 var newSqlEnergyData = [];
 var newSqlTempData = [];
@@ -13,19 +13,14 @@ function handleMqttEnergyMessage(message) {
     newSqlEnergyData[newSqlEnergyData.length] = parseMeterEnergy(message);
 
     if (newSqlEnergyData.length >=60) {
-        sqlEnergy.sendDataToDatabase(newSqlEnergyData);
+        sql.sendEnertgyDataToDatabase([newSqlEnergyData[0]]);
         newSqlEnergyData = [];
      }
 
 }
 
 function handleMqttTempMessage(message) {
-    newSqlTempData[newSqlEnergnewSqlTempDatayData.length] = parseMeterTemp(message);
-
-    if (newSqlTempData.length >=60) {
-        sqlEnergy.sendDataToDatabase(newSqlTempData);
-        newSqlTempData = [];
-     }
+    sql.sendTempDataToDatabase(parseMeterTemp(message));
 }
 
 
@@ -43,12 +38,7 @@ function parseMeterEnergy(message) {
 }
 
 function parseMeterTemp(message) {
-    messageJs = JSON.parse(message);
-
-    return [
-        `${messageJs.temperature}` || null, //temperature
-        `${messageJs.humidity}` || null     //humidity
-        ];   
+    return JSON.parse(message);
 }
 
 

@@ -36,7 +36,9 @@ fetch('http://localhost:8080/api/v1/getLatestH2')
 
     totalUsage = totalUsage/time.length; //gets average
 
-    var amountSpentOnPower = Math.round(100 *totalUsage / 5.0)/100; //in cents over 2 hours
+    totalUsage = (totalUsage * 0.22);// naar 22 cent per kwh
+
+    var amountSpentOnPower = (Math.round(100 *totalUsage)/100) * 2; //in cents over 2 hours
 
 
     bespaart.innerText = `Over de afgelopen 2 uur uigegeven aan stroom: €${amountSpentOnPower}`
