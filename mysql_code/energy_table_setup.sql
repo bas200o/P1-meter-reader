@@ -1,3 +1,8 @@
+create database IF NOT EXISTS meterbase;
+CREATE USER 'meterboi'@'%' IDENTIFIED BY 'hamenkaas';
+GRANT ALL privileges ON meterbase.* TO 'meterboi'@'%';
+FLUSH PRIVILEGES;
+
 USE meterbase;
 
 CREATE table IF NOT EXISTS energy (
@@ -9,4 +14,10 @@ CREATE table IF NOT EXISTS energy (
     CurrentUsage double(32,3),
     Currentdelivery double(32,3),
     CurrentVoltage1 int(16)
+);
+
+CREATE table IF NOT EXISTS temp (
+	CurrentTime datetime,
+    temperature int(16),
+    humidity int(16)
 );

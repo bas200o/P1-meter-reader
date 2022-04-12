@@ -20,7 +20,7 @@
 #define MQTT_PORT 1883
 #define MQTT_TOPIC "meter/energy"
 
-#define SERIAL_PORT "/dev/ttyUSB0"
+#define SERIAL_PORT "/dev/ttyUSB2"
 
 // Code snipit from https://github.com/domoticz/domoticz/blob/development/hardware/P1MeterBase.cpp
 // changed some of the names and split the tarrif values.

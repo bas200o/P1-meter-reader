@@ -20,7 +20,7 @@
 #define MQTT_PORT 1883
 #define MQTT_TOPIC "meter/temp"
 
-#define SERIAL_PORT "/dev/ttyUSB0"
+#define SERIAL_PORT "/dev/ttyUSB1"
 
 using namespace std;
 
